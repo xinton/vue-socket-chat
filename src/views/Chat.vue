@@ -4,7 +4,7 @@
       <p class="typing">{{typingUsersText}}</p>
       <ul id="messages"></ul>
     </div>
-    <Input :sendMessage="sendMessage"/>
+    <Input :sendMessage="sendMessage" :userTyping="userTyping"/>
   </div>
 </template>
 <script>
@@ -18,21 +18,20 @@ export default {
   components: {
       Input,
   },
+  props: {
+    nickname: String
+  },
   data: function() {
     return {
       message: "",
       typingUsersList: []
     };
   },
-  props: {
-    nickname: String
-  },
   methods: {
     sendMessage: function(message) {
       socket.emit("chat message", message);
-    //   this.message = "";
     },
-    typing: function() {
+    userTyping: function() {
       socket.emit("typing");
     }
   },

@@ -9,7 +9,7 @@
 <script>
 export default {
     name: "Input",
-    props:['sendMessage'],
+    props:['sendMessage', 'userTyping'],
     data: function () {
         return{
             message: '',
@@ -17,8 +17,15 @@ export default {
     },
     methods: {
         send () {
+            this.clearInput();
             this.sendMessage(this.message)
         },
+        clearInput () {
+          this.message = '';
+        },
+        typing () {
+          this.userTyping();
+        }
     }
 };
 </script>
