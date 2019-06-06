@@ -4,7 +4,7 @@
       <p class="typing">{{typingUsersText}}</p>
       <ul id="messages"></ul>
     </div>
-    <Input :sendMessage="sendMessage" :userTyping="userTyping"/>
+    <Input @send-message="handleSendMessage" :userTyping="userTyping"/>
   </div>
 </template>
 <script>
@@ -28,7 +28,7 @@ export default {
     };
   },
   methods: {
-    sendMessage: function(message) {
+    handleSendMessage: function(message) {
       socket.emit("chat message", message);
     },
     userTyping: function() {
